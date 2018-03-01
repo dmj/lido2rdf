@@ -10,6 +10,10 @@
 
   <xsl:output method="xml" indent="yes"/>
 
+  <xsl:variable name="l2r:conceptCodes">
+    <l2r:concept code="aat" prefix="http://vocab.getty.edu/aat/"/>
+  </xsl:variable>
+
   <xsl:template match="lido:lido">
     <xsl:variable name="ident" select="substring-after(.//lido:resourceRepresentation[@lido:type = 'purl'], '=')"/>
     <rdf:Description rdf:about="http://uri.hab.de/instance/grafik/{$ident}">
@@ -46,9 +50,10 @@
   <xsl:function name="l2r:resolveConceptUri" as="xs:anyURI">
     <xsl:param name="concept" as="element(lido:conceptID)"/>
     <xsl:variable name="conceptUriPart" select="normalize-space(encode-for-uri($concept))"/>
+    <xsl:variable name="conceptUriPrefix" select="$l2r:conceptCodes/l2r:concept[@code = $concept/@lido:source]/@prefix"/>
     <xsl:choose>
       <xsl:when test="$concept/@lido:source = 'aat'">
-        <xsl:value-of select="xs:anyURI(concat('http://vocab.getty.edu/aat/', $conceptUriPart))"/>
+        <xsl:value-of select="xs:anyURI(concat($conceptUriPrefix, $conceptUriPart))"/>
       </xsl:when>
     </xsl:choose>
   </xsl:function>
