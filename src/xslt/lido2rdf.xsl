@@ -11,7 +11,12 @@
   <xsl:output method="xml" indent="yes"/>
 
   <xsl:variable name="l2r:conceptCodes">
-    <l2r:concept code="aat" prefix="http://vocab.getty.edu/aat/"/>
+    <l2r:concept code="aat"       prefix="http://vocab.getty.edu/aat/"/>
+    <l2r:concept code="dnb"       prefix="http://d-nb.info/gnd/"/>
+    <l2r:concept code="tgn"       prefix="http://vocab.getty.edu/tgn/"/>
+    <l2r:concept code="ulan"      prefix="http://vocab.getty.edu/ulan/"/>
+    <l2r:concept code="isil"      prefix="http://lobid.org/organisation/"/>
+    <l2r:concept code="iconclass" prefix="http://iconclass.org/"/>
   </xsl:variable>
 
   <xsl:template match="lido:lido">
@@ -51,11 +56,7 @@
     <xsl:param name="concept" as="element(lido:conceptID)"/>
     <xsl:variable name="conceptUriPart" select="normalize-space(encode-for-uri($concept))"/>
     <xsl:variable name="conceptUriPrefix" select="$l2r:conceptCodes/l2r:concept[@code = $concept/@lido:source]/@prefix"/>
-    <xsl:choose>
-      <xsl:when test="$concept/@lido:source = 'aat'">
-        <xsl:value-of select="xs:anyURI(concat($conceptUriPrefix, $conceptUriPart))"/>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:value-of select="xs:anyURI(concat($conceptUriPrefix, $conceptUriPart))"/>
   </xsl:function>
 
 </xsl:transform>
