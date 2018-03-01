@@ -50,6 +50,19 @@
     </dct:type>
   </xsl:template>
 
+  <xsl:template match="lido:subjectConcept">
+    <dct:subject>
+      <skos:Concept>
+        <xsl:if test="lido:conceptID">
+          <owl:sameAs rdf:resource="{l2r:resolveConceptUri(lido:conceptID)}"/>
+        </xsl:if>
+        <skos:prefLabel>
+          <xsl:value-of select="lido:term[not(@lido:addedSearchTerm eq 'yes')]"/>
+        </skos:prefLabel>
+      </skos:Concept>
+    </dct:subject>
+  </xsl:template>
+
   <xsl:template match="text()"/>
 
   <xsl:function name="l2r:resolveConceptUri" as="xs:anyURI">
