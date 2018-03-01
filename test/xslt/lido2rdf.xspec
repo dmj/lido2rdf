@@ -1,0 +1,15 @@
+<xspec:description stylesheet="../../src/xslt/lido2rdf.xsl"
+                   xmlns:l2r="https://github.com/dmj/lido2rdf"
+                   xmlns:lido="http://www.lido-schema.org"
+                   xmlns:xspec="http://www.jenitennison.com/xslt/xspec">
+
+  <xspec:scenario label="Resolving a AAT concept">
+    <xspec:call function="l2r:resolveConceptUri">
+      <xspec:param name="concept">
+        <lido:conceptID lido:type="code" lido:source="aat">12345</lido:conceptID>
+      </xspec:param>
+    </xspec:call>
+    <xspec:expect select="'http://vocab.getty.edu/aat/12345'" label="to the vocabulary URI"/>
+  </xspec:scenario>
+
+</xspec:description>

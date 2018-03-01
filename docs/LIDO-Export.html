@@ -1,0 +1,799 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+  <head>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8"/>
+    <title>LIDO-Anwendungsprofil des Virtuellen Kupferstichkabinetts</title>
+    <style type="text/css">
+      h1 { font-size: xx-large; }
+      h2 { font-size: x-large; }
+      h3 { font-size: large; }
+      h4 { font-size: medium; font-weight: bold; }
+      h5 { font-size: medium; text-decoration: underline; }
+      body { width: 60em; margin: 0 auto; font-family: "Open Sans", sans-serif; }
+
+      dfn { display: block; }
+      dfn + code { display: block; margin: 1em 0; }
+      code { white-space: pre; }
+
+      body { counter-reset: h2; }
+      h2 { counter-reset: h3; }
+      h3 { counter-reset: h4; }
+      h2:before { counter-increment: h2; content: counter(h2) ". "; }
+      h3:before { counter-increment: h3; content: counter(h2) "." counter(h3) ". "; }
+      h4:before { counter-increment: h4; content: counter(h2) "." counter(h3) "." counter(h4) ". "; }
+
+      ul { padding: 0; }
+      samp { background-color: #f8f8f8; display: block; padding: 0 .5em; }
+      samp code { white-space: pre; }
+      samp code em { font-weight: bold; font-style: normal; }
+      samp + samp { margin-top: 1em; }
+
+      .xml-attribute:before { content: "@"; }
+
+      dfn { display: block; }
+
+      table { width: 100%; }
+      table, tr, th, td { border-collapse: collapse; }
+      tr:nth-child(even) { background-color: #f8f8f8; }
+    </style>
+  </head>
+  <body>
+    <h1>LIDO-Anwendungsprofil des Virtuellen Kupferstichkabinetts</h1>
+    <p>
+      David Maus unter Mitarbeit von Judith Tralles
+    </p>
+    <p>
+      Arbeitsversion vom 28. September 2017
+    </p>
+    <h2>Vorwort</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Präfix</th>
+          <th>URI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>lido</td>
+          <td>http://www.lido-schema.org</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Exportierte Daten</h2>
+    <h3>Identifikation des LIDO-Datensatzes</h3>
+    <dfn>
+      A unique lido record identification preferably composed of an identifier for the contributor and a
+      record identification in the contributor's (local) system.
+    </dfn>
+    <code>lido:lido/lido:lidoRecID</code>
+    <p>
+      Der Identifikator des LIDO-Datensatzes ist aus dem Präfix <code>lido:virtuelles-kupferstichkabinett.de:</code>
+      und der internen Blattnummer gebildet. Das Attribute <code class="xml-attribute">lido:type</code> ist mit dem Wert
+      <code>local</code> belegt.
+    </p>
+    <samp>
+      <code>
+&lt;lido:lidoRecID <em>lido:type="local"</em>>
+  <em>lido:virtuelles-kupferstichkabinett.de:12345</em>
+&lt;/lido:lidoRecID>
+      </code>
+    </samp>
+    <h3>Administrative Metadaten</h3>
+    <dfn>
+      Holds the administrative metadata for an object / work record.
+    </dfn>
+    <code>lido:lido/lido:administrativeMetadata</code>
+    <h4>Identifikation des lokalen Datensatzes</h4>
+    <dfn>
+      A unique record identification in the contributor's (local) system.
+    </dfn>
+    <code>lido:recordWrap/lido:recordID</code>
+    <p>
+      Der lokale Datensatz ist durch die interne Blattnummer identifiziert. Das Attribute <code
+      class="xml-attribute">lido:type</code> ist mit dem Wert <code>local</code> belegt.
+    </p>
+    <samp>
+      <code>
+&lt;lido:recordID <em>lido:type="local"</em>><em>12345</em>&lt;/lido:recordID>
+      </code>
+    </samp>
+    <h4>Typ des beschriebenen Objektes</h4>
+    <dfn>
+      Term establishing whether the record represents an individual item or a collection, series, or group of works.
+    </dfn>
+    <code>lido:recordWrap/lido:recordType</code>
+    <p>
+      Der Typ des beschriebenen Objekts ist immer mit dem Begriff <code>Einzelobjekt</code> angegeben.
+    </p>
+    <samp>
+      <code>
+&lt;lido:recordType>
+  &lt;lido:term><em>Einzelobjekt</em>&lt;/lido:term>
+&lt;/lido:recordType>
+      </code>
+    </samp>
+    <h4>Quelle der Objektinformation</h4>
+    <dfn>
+      The source of information in this record, generally the repository or other institution.
+    </dfn>
+    <code>lido:recordWrap/lido:recordSource</code>
+    <p>
+      Es ist die <abbr title="Bibliothekssigel; International Standard Identifier for Libraries and Related
+      Organizations ">ISIL</abbr> der für die Informationen des Datensatzes verantwortlichen Einrichtung angegeben.
+    </p>
+    <samp>
+      <code>
+&lt;lido:recordSource>
+  &lt;lido:legalBodyID <em>lido:type="code"</em> <em>lido:source="isil"</em>><em>DE-23</em>&lt;/lido:legalBodyID>
+&lt;/lido:recordSource>
+      </code>
+    </samp>
+    <h4>Rechte am Datensatz</h4>
+    <dfn>
+      Information about rights regarding the content provided in this LIDO record.
+    </dfn>
+    <code>lido:recordWrap/lido:recordRights</code>
+    <p>
+      Die Lizenzbestimmungen des LIDO-Datensatzes sind als Begriff <code>CC0</code> (Datensätze der HAB) bzw. <code>Alle Rechte vorbehalten</code> (Datensätze des HAUM) zusammen mit der <abbr title="Bibliothekssigel; International Standard Identifier for Libraries and Related
+      Organizations ">ISIL</abbr> der erfassenden Einrichtung angegeben.
+    </p>
+    <samp>
+      <code>
+&lt;lido:recordRights>
+  &lt;lido:rightsType>
+    &lt;lido:term><em>CC0</em>&lt;/lido:term>
+  &lt;/lido:rightsType>
+  &lt;lido:rightsHolder>
+    &lt;lido:legalBodyID <em>lido:type="code"</em> <em>lido:source="isil"</em>><em>DE-23</em>&lt;/lido:legalBodyID>
+  &lt;/lido:rightsHolder>
+&lt;/lido:recordRights>
+      </code>
+    </samp>
+    <h4>Änderungsdatum des Datensatzes</h4>
+    <dfn>
+      Creation date or date modified of the metadata record.
+    </dfn>
+    <code>lido:recordWrap/lido:recordInfoSet/lido:recordMetadataDate</code>
+    <p>
+      Datum und Uhrzeit der letzten Datensatzänderung sind als Zeitangabe nach ISO-8601 in der Form
+      <code>YYYY-MM-DDThh:mm:ssZ</code> angegeben.
+    </p>
+    <samp>
+      <code>
+&lt;lido:recordInfoSet>
+  &lt;lido:recordMetadataDate>
+    <em>2017-09-29T07:36:29Z</em>
+  &lt;/lido:recordMetadataDate>
+&lt;/lido:recordInfoSet>
+      </code>
+    </samp>
+    <h3>Deskriptive Metadaten</h3>
+    <dfn>
+      Holds the descriptive metadata of an object record.
+    </dfn>
+    <code>lido:lido/lido:descriptiveMetadata</code>
+    <h4 id="objectWorkType">Gattung des beschriebenen Objekts</h4>
+    <dfn>
+      The specific kind of object / work being described.
+    </dfn>
+    <code>lido:objectClassificationWrap/lido:objectWorkTypeWrap/lido:objectWorkType</code>
+    <p>
+      Die Gattung des Objekts wird als kodierter Wert des <a
+      href="https://www.getty.edu/research/tools/vocabularies/aat/">Art &amp; Architecture Thesaurus</a> (AAT) und als
+      natürlichsprachiger Begriff angegeben. In der Grafikdatenbank werden Druckgrafiken (AAT 300041273), Zeichnungen
+      (AAT 300041273) und Fotografien (AAT 300046300) nachgewiesen.
+    </p>
+    <samp>
+      <code>
+&lt;lido:objectWorkType>
+  &lt;lido:conceptID <em>lido:type="code"</em> <em>lido:source="aat"</em>><em>300033973</em>&lt;/lido:conceptID>
+  &lt;lido:term><em>Zeichnung</em>&lt;/lido:term>
+&lt;/lido:objectWorkType>
+      </code>
+    </samp>
+    <h4 id="repositorySet">Signatur und besitzende Einrichtung</h4>
+    <dfn>
+      Wrapper for designation and identification of the institution of custody, and possibly an indication of the exact
+      location of the object.
+    </dfn>
+    <code>lido:objectIdentificationWrap/lido:repositoryWrap/lido:repositorySet</code>
+    <p>
+      Die Signatur wird wie vorgefunden wiedergegeben. Die besitzende Einrichtung wird als kodierter Wert in Form ihrer
+      ISIL angegeben. Die aktuelle Signatur ist durch Belegung des Attributes <code>lido:type</code> mit dem Wert
+      <code>current</code>, frühere Signaturen durch die Belegung mit dem Wert <code>former</code> gekennzeichnet.
+    </p>
+    <samp>
+      <code>
+&lt;lido:repositorySet <em>lido:type="current"</em>>
+  &lt;lido:repositoryName>
+    &lt;lido:legalBodyID <em>lido:type="code"</em> <em>lido:source="isil"</em>><em>DE-23</em>&lt;/lido:legalBodyID>
+  &lt;/lido:repositoryName>
+  &lt;lido:workID><em>Graph. A1: 336a</em>&lt;/lido:workID>
+&lt;/lido:repositorySet>
+      </code>
+    </samp>
+    <samp>
+      <code>
+&lt;lido:repositorySet <em>lido:type="former"</em>>
+  &lt;lido:repositoryName>
+    &lt;lido:legalBodyID <em>lido:type="code"</em> <em>lido:source="isil"</em>><em>DE-MUS-026819</em>&lt;/lido:legalBodyID>
+  &lt;/lido:repositoryName>
+  &lt;lido:workID><em>ZL II/2399</em>&lt;/lido:workID>
+&lt;/lido:repositorySet>
+      </code>
+    </samp>
+    <h4>Name und Titel des Objektes</h4>
+    <dfn>
+      Wrapper for Object name / Title information.
+    </dfn>
+    <code>lido:objectIdentifikationWrap/lido:titleWrap</code>
+    <p>
+      Jedes Objekt besitzt einen bevorzugten Namen, der aus dem Begriff der <a href="#objectWorkType">Objektgattung</a>
+      und der <a href="#repositorySet">aktuellen Signatur</a> zusammengesetzt ist. Ist für das Objekt ein Titel
+      verzeichnet, so wird dieser als zweites <code>lido:titleSet</code> aufgeführt. Ist das Objekt Teil einer Serie, so
+      wird Serie und Blattnummer als drittes <code>lido:titleSet</code> genannt.
+    </p>
+    <samp>
+      <code>
+&lt;lido:titleWrap>
+  &lt;lido:titleSet>
+    &lt;lido:appellationValue><em>Druckgraphik Graph. A1: 1808</em>&lt;/lido:appellationValue>
+  &lt;/lido:titleSet>
+  &lt;lido:titleSet>
+    &lt;lido:appellationValue><em>Ein Mann hinter einem Gatter stehend.</em>&lt;/lido:appellationValue>
+  &lt;/lido:titleSet>
+&lt;/lido:titleWrap>
+      </code>
+    </samp>
+    <h4>Inschrift (Texteinträge auf der Platte)</h4>
+    <dfn>
+      A transcription or description of any distinguishing or identifying physical lettering, annotations, texts,
+      markings, or labels that are affixed, applied, stamped, written, inscribed, or attached to the object / work,
+      excluding any mark or text inherent in the materials of which it is made.
+    </dfn>
+    <code>lido:objectIdentifikationWrap/lido:inscriptionsWrap</code>
+    <p>
+      Inschriften sind durch die Belegung des <code>lido:type</code>-Attributs mit dem Wert <code>inscription</code>
+      gekennzeichnet.
+    </p>
+    <samp>
+      <code>
+&lt;lido:inscriptionsWrap>
+  &lt;lido:inscriptions <em>lido:type="inscription"</em>>
+    &lt;lido:inscriptionTranscription>
+      <em>OMNEM IN HOMINE VENUSTATEM MORS ABOLET.</em>
+    &lt;/lido:inscriptionTranscription>
+  &lt;/lido:inscriptions>
+&lt;/lido:inscriptionsWrap>
+      </code>
+    </samp>
+    <h4>Anmerkungen</h4>
+    <dfn>
+      Usually a relatively brief essay-like text that describes the entity.
+    </dfn>
+    <code>lido:objectIdentifikationWrap/lido:objectDescriptionSet</code>
+    <samp>
+      <code>
+&lt;lido:objectDescriptionSet>
+  &lt;lido:descriptiveNoteValue>
+    <em>Teil einer Reihe von Illustrationen…</em>
+  &lt;/lido:descriptiveNoteValue>
+&lt;/lido:objectDescriptionSet>
+      </code>
+    </samp>
+    <h4>Ereignis "Herstellung/Erschaffung"</h4>
+    <code>lido:eventWrap/lido:eventSet/lido:event[lido:eventType/lido:term = 'Herstellung/Erschaffung']</code>
+    <p>
+      Das Ereignis ist durch die natürlichsprachige Bezeichnung <code>Herstellung/Erschaffung</code>
+      identifiziert.
+    </p>
+
+    <h5>Hersteller und Künstler</h5>
+    <dfn>
+      Describes an actor with role and (if necessary) attributions in a structured way, consisting of the sub-elements
+      actor, its role, attribution and extent.
+    </dfn>
+    <code>lido:eventActor</code>
+    <p>
+      Alle Personen, deren Rolle der Kategorie "Künstler/Herrsteller" <a href="#roles">zugeordnet ist</a>. Für jede
+      Person ist der in der Datenbank eingetragene Anzeigename, und, wenn vorhanden, ein oder mehrere typisierte
+      Identifikatoren angegeben. Die Rolle und eine sie näher qualifizierende Bestimmung sind als natürlichsprachige
+      Bezeichnungen angegeben.
+    </p>
+    <samp>
+      <code>
+&lt;lido:eventActor>
+  &lt;lido:actorInRole>
+    &lt;lido:actor>
+      &lt;lido:actorID <em>lido:type="code"</em> <em>lido:source="gnd"</em>><em>124577466</em>&lt;/lido:actorID>
+      &lt;lido:nameActorSet>
+        &lt;lido:appellationValue><em>Hoffmann, Johann</em>&lt;/lido:appellationValue>
+      &lt;/lido:nameActorSet>
+    &lt;/lido:actor>
+    &lt;lido:roleActor>
+      &lt;lido:term><em>Verleger</em>&lt;/lido:term>
+    &lt;/lido:roleActor>
+    &lt;lido:attributionQualifierActor><em>Zuschreibung</em>&lt;/lido:attributionQualifierActor>
+  &lt;/lido:actorInRole>
+&lt;/lido:eventActor>
+      </code>
+    </samp>
+    <h5>Herstellungsort</h5>
+    <dfn>
+      Place specification of the event.
+    </dfn>
+    <code>lido:eventPlace</code>
+    <p>
+      Alle Orte, deren Rolle der Kategorie "Ort der Herstellung" zugeordnet ist. Für jeden Ort ist der in der Datenbank
+      eingetragene Anzeigename, und, wenn vorhanden, ein oder mehrere typisierte Identifikatoren angegeben. Die Rolle
+      ist als natürlichsprachige Bezeichnungen angegeben.
+    </p>
+    <samp>
+      <code>
+&lt;lido:eventPlace>
+  &lt;lido:place>
+    &lt;lido:placeID <em>lido:type="code"</em> <em>lido:source="tgn"</em>><em>7008038</em>&lt;/lido:placeID>
+    &lt;lido:namePlaceSet>
+      &lt;lido:appellationValue><em>Paris</em>&lt;/lido:appellationValue>
+    &lt;/lido:namePlaceSet>
+  &lt;/lido:place>
+&lt;/lido:eventPlace>
+      </code>
+    </samp>
+    <h5>Schule und kulturelle Zuordnung</h5>
+    <dfn>
+      Name of a culture, cultural context, people, or also a nationality.
+    </dfn>
+    <code>lido:culture</code>
+    <p>
+      Schule und kulturelle Zuordnung werden als natürlichsprachige Bezeichnung angegeben.
+    </p>
+    <samp>
+      <code>
+&lt;lido:culture>
+  &lt;lido:term><em>Italienisch</em>&lt;/lido:term>
+&lt;/lido:culture>
+      </code>
+    </samp>
+    <h5>Datierung</h5>
+    <dfn>
+      Date specification of the event.
+    </dfn>
+    <code>lido:eventDate</code>
+    <samp>
+      <code>
+&lt;lido:eventDate>
+  &lt;lido:date>
+    &lt;lido:earliestDate><em>1645</em>&lt;/lido:earliestDate>
+    &lt;lido:latestDate><em>1650</em>&lt;/lido:latestDate>
+  &lt;/lido:date>
+&lt;/lido:eventDate>
+      </code>
+    </samp>
+    <h5>Trägermaterial, Technik und Drucktechnik</h5>
+    <dfn>
+      Indicates the substances or materials used within the event (e.g. the creation of an object / work), as well as
+      any implements, production or manufacturing techniques, processes, or methods incorporated.
+    </dfn>
+    <code>lido:eventMaterialsTech</code>
+    <p>
+      Angaben zu Trägermaterial, Technik und Drucktechnik sind als natürlichsprachige Bezeichnungen angegeben. Zur
+      Unterscheidung ist das Attribute <code>lido:type</code> mit folgenden Werten belegt.
+    </p>
+    <dl>
+      <dt><code>material</code></dt>
+      <dd>Trägermaterial</dd>
+      <dt><code>technique</code></dt>
+      <dd>Technik</dd>
+      <dt><code>printing technique</code></dt>
+      <dd>Drucktechnik</dd>
+    </dl>
+    <samp>
+      <code>
+&lt;lido:termMaterialsTech <em>lido:type="material"</em>>
+  &lt;lido:term><em>Pergament</em>&lt;/lido:term>
+&lt;/lido:termMaterialsTech>
+      </code>
+    </samp>
+    <samp>
+      <code>
+&lt;lido:termMaterialsTech <em>lido:type="technique"</em>>
+  &lt;lido:term><em>Radierung</em>&lt;/lido:term>
+&lt;/lido:termMaterialsTech>
+      </code>
+    </samp>
+    <samp>
+      <code>
+&lt;lido:termMaterialsTech <em>lido:type="printing technique"</em>>
+  &lt;lido:term><em>Mehrplattendruck</em>&lt;/lido:term>
+&lt;/lido:termMaterialsTech>
+      </code>
+    </samp>
+    <h4>Ereignis: "Austellungen"</h4>
+    <code>lido:eventWrap/lido:eventSet[lido:event/lido:eventType/lido:term = 'Austellung']</code>
+    <p>
+      Das Ereignis ist durch die natürlichsprachige Bezeichnung <code>Ausstellung</code> identifiziert. Informationen
+      zur Ausstellung sind als Anzeigeelement angegeben.
+    </p>
+    <samp>
+      <code>
+&lt;lido:eventSet>
+  &lt;lido:displayEvent><em>Braunschweig 2007/2008, HAUM: Schlangen und Drachen</em>&lt;/lido:displayEvent>
+  &lt;lido:event>
+    &lt;lido:eventType>
+      &lt;lido:term><em>Ausstellung</em>&lt;/lido:term>
+    &lt;/lido:eventType>
+  &lt;/lido:event>
+&lt;/lido:eventSet>
+      </code>
+    </samp>
+    <h4>Objektmaße</h4>
+    <dfn>
+      Structured measurement information about the dimensions, size, or scale of the object / work.
+    </dfn>
+    <code>lido:objectIdentificationWrap/lido:objectMeasurementsWrap/lido:objectMeasurementsSet</code>
+    <p>
+      Höhe und Breite bzw. Durchmesser des Objekts sind separat für Platte und Blatt (Druckgrafik) bzw. Zeichnung und
+      Montierung (Zeichnung) angegeben.
+    </p>
+    <samp>
+      <code>
+&lt;lido:objectMeasurements>
+  &lt;lido:measurementsSet>
+    &lt;lido:measurementType><em>Höhe</em>&lt;/lido:measurementType>
+    &lt;lido:measurementUnit><em>mm</em>&lt;/lido:measurementUnit>
+    &lt;lido:measurementValue><em>128</em>&lt;/lido:measurementValue>
+  &lt;/lido:measurementsSet>
+  &lt;lido:measurementsSet>
+    &lt;lido:measurementType><em>Breite</em>&lt;/lido:measurementType>
+    &lt;lido:measurementUnit><em>mm</em>&lt;/lido:measurementUnit>
+    &lt;lido:measurementValue><em>99</em>&lt;/lido:measurementValue>
+  &lt;/lido:measurementsSet>
+  &lt;lido:extentMeasurements><em>Platte</em>&lt;/lido:extentMeasurements>
+&lt;/lido:objectMeasurements>
+      </code>
+    </samp>
+    <samp>
+      <code>
+&lt;lido:objectMeasurements>
+  &lt;lido:measurementsSet>
+    &lt;lido:measurementType><em>Durchmesser</em>&lt;/lido:measurementType>
+    &lt;lido:measurementUnit><em>mm</em>&lt;/lido:measurementUnit>
+    &lt;lido:measurementValue><em>174</em>&lt;/lido:measurementValue>
+  &lt;/lido:measurementsSet>
+  &lt;lido:shapeMeasurements><em>rund</em>&lt;/lido:shapeMeasurements>
+&lt;/lido:objectMeasurements>
+      </code>
+    </samp>
+
+    <!-- CONTINUE HERE! -->
+
+    <h4>Klassifikation und Beschlagwortung</h4>
+    <dfn>
+      Display and index elements for one set of subject information.
+    </dfn>
+    <code>lido:objectRelationWrap/lido:subjectWrap</code>
+    <h5>Klassifikation nach ICONCLASS</h5>
+    <code>lido:subjectSet[lido:displaySubject = 'Klassifikation der Bildinhalte']</code>
+    <p>
+      Die Klassifikation der Bildinhalte nach ICONCLASS ist als kodierter Wert zusammen mit der bevorzugen
+      natürlichsprachigen Bezeichnung angegeben. Die mit der Klassifikation verbundenen deutschsprachigen Schlagwörter
+      sind als natürlichsprachige Bezeichnung aufgeführt und mit Belegung des
+      <code>lido:addedSearchTerm</code>-Attributes mit dem Wert <code>yes</code> gekennzeichnet.
+    </p>
+    <samp>
+      <code>
+&lt;lido:subjectSet>
+  &lt;lido:displaySubject><em>Klassifikation der Bildinhalte</em>&lt;/lido:displaySubject>
+  &lt;lido:subjectConcept>
+    &lt;lido:conceptID <em>lido:type="code"</em> <em>lido:source="iconclass"</em>>
+      <em>31D16</em>
+    &lt;/lido:conceptID>
+    &lt;lido:term><em>alter Mann</em>&lt;/lido:term>
+    &lt;lido:term <em>lido:addedSearchTerm="yes"</em>><em>Greis</em>&lt;/lido:term>
+    &lt;lido:term <em>lido:addedSearchTerm="yes"</em>><em>Mann</em>&lt;/lido:term>
+  &lt;/lido:subjectConcept>
+&lt;/lido:subjectSet>
+      </code>
+    </samp>
+    <h5>Schlagwörter</h5>
+    <code>lido:subjectSet[lido:displaySubject = 'Schlagwörter']</code>
+    <p>
+      Schlagwörter sind als natürlichsprachige Bezeichnung angegeben.
+    </p>
+    <samp>
+      <code>
+&lt;lido:subjectSet>
+  &lt;lido:displaySubject><em>Schlagwörter</em>&lt;/lido:displaySubject>
+    &lt;lido:subjectConcept>
+      &lt;lido:term><em>Landschaft</em>&lt;/lido:term>
+    &lt;/lido:subjectConcept>
+  &lt;/lido:subjectConcept>
+&lt;/lido:subjectSet>
+      </code>
+    </samp>
+    <h5>Dargestellte Personen</h5>
+    <code>lido:subjectSet[lido:displaySubject = 'Dargestellte Personen']</code>
+    <p>
+      Für jede Person ist der in der Datenbank eingetragene Anzeigename, und, wenn vorhanden, ein oder mehrere
+      typisierte Identifikatoren angegeben.
+    </p>
+    <samp>
+      <code>
+&lt;lido:subjectSet>
+  &lt;lido:displaySubject><em>Dargestellte Personen</em>&lt;/lido:displaySubject>
+  &lt;lido:subjectActor>
+    &lt;lido:actor>
+      &lt;lido:actorID <em>lido:type="code"</em> <em>lido:source="gnd"</em>><em>118580485</em>&lt;/lido:actorID>
+      &lt;lido:nameActorSet>
+        &lt;lido:appellationValue><em>Melanchthon, Philipp</em>&lt;/lido:appellationValue>
+      &lt;/lido:nameActorSet>
+    &lt;/lido:actor>
+  &lt;/lido:subjectActor>
+&lt;/lido:subjectSet>
+      </code>
+    </samp>
+    <h5>Dargestellte Orte</h5>
+    <code>lido:subjectSet[lido:displaySubject = 'Dargestellte Orte']</code>
+    <p>
+      Für jeden Ort ist der in der Datenbank eingetragene Anzeigename, und, wenn vorhanden, ein oder mehrere typisierte
+      Identifikatoren angegeben.
+    </p>
+    <samp>
+      <code>
+&lt;lido:subjectSet>
+  &lt;lido:displaySubject><em>Dargestellte Orte</em>&lt;/lido:displaySubject>
+  &lt;lido:subjectPlace>
+    &lt;lido:place>
+      &lt;lido:placeID <em>lido:type="code"</em> <em>lido:source="tgn"</em>><em>7000874</em>&lt;/lido:placeID>
+      &lt;lido:namePlaceSet>
+        &lt;lido:appellationValue><em>Roma; Rom; Rome</em>&lt;/lido:appellationValue>
+      &lt;/lido:namePlaceSet>
+    &lt;/lido:place>
+  &lt;/lido:subjectPlace>
+&lt;/lido:subjectSet>
+      </code>
+    </samp>
+    <h5>Dargestellte Bauwerke</h5>
+    <code>lido:subjectSet[lido:displaySubject = 'Dargestellte Bauwerke']</code>
+    <p>
+      Für jedes Bauwerk ist der in der Datenbank eingetragene Anzeigename, und, wenn vorhanden, ein oder mehrere
+      typisierte Identifikatoren angegeben.
+    </p>
+    <samp>
+      <code>
+&lt;lido:subjectSet>
+  &lt;lido:displaySubject><em>Dargestellte Bauwerke</em>&lt;/em>&lt;/lido:displaySubject>
+  &lt;lido:subjectObject>
+    &lt;lido:object>
+      &lt;lido:objectID <em>lido:type="code"</em> <em>lido:source="gnd"</em>><em>7560600-8</em>&lt;/lido:objectID>
+    &lt;/lido:object>
+    &lt;lido:displayObject><em>Triumphbogen des Septimus Severus</em>&lt;/lido:displayObject>
+  &lt;/lido:subjectObject>
+&lt;/lido:subjectSet>
+      </code>
+    </samp>
+    <h4>Beziehung zur anderen Objekten</h4>
+    <dfn>
+      Object / work, group, collection, or series that is directly related to the object / work being recorded.
+    </dfn>
+    <code>lido:objectRelationWrap/lido:relatedWorksWrap/lido:relatedWorkSet</code>
+    <p>
+      Die Objektbeziehungen sind nur als eine für die Anzeige konzipierte natürlichsprachige Bezeichnung angegeben. Über
+      das Attribute <code>lido:sortorder</code> kann eine Reihenfolge aller Objektbeziehungen gleichen Typs angezeigt
+      sein. Der Typ der Objektbeziehung ist als einer der folgenden natürlichsprachigen Begriffe angegeben.
+    </p>
+    <dl>
+      <dt><code>beschrieben in</code></dt>
+      <dd>das Objekt wird in der aufgeführten Literatur beschrieben</dd>
+      <dt><code>Teil von</code></dt>
+      <dd>das Objekt ist Teil eines übergeordneten Zusammenhangs</dd>
+      <dt><code>hat Vorlage</code></dt>
+      <dd>das Objekt hat das aufgeführte Objekt zu seiner Vorlage</dd>
+    </dl>
+    <samp>
+      <code>
+&lt;lido:relatedWorkSet <em>lido:sortorder="5"</em>>
+  &lt;lido:relatedWork>
+    &lt;lido:displayObject><em>Schoch/Mende/Scherbaum, S. 59</em>&lt;/lido:displayObject>
+  &lt;/lido:relatedWork>
+  &lt;lido:relatedWorkRelType>
+    &lt;lido:term><em>beschrieben in</em>&lt;/lido:term>
+  &lt;/lido:relatedWorkRelType>
+&lt;/lido:relatedWorkSet>
+      </code>
+    </samp>
+    <samp>
+      <code>
+&lt;lido:relatedWorkSet>
+  &lt;lido:relatedWork>
+    &lt;lido:displayObject><em>Die Kupferstichpassion, A. Dürer, 16 Bll.</em>&lt;/lido:displayObject>
+  &lt;/lido:relatedWork>
+  &lt;lido:relatedWorkRelType>
+    &lt;lido:term><em>Teil von</em>&lt;/lido:term>
+  &lt;/lido:relatedWorkRelType>
+&lt;/lido:relatedWorkSet>
+      </code>
+    </samp>
+    <samp>
+      <code>
+&lt;lido:relatedWorkSet>
+  &lt;lido:relatedWork>
+    &lt;lido:displayObject><em>Frei nach einem Stich des Meisters der Nürnberger Passion</em>&lt;/lido:displayObject>
+  &lt;/lido:relatedWork>
+  &lt;lido:relatedWorkRelType>
+    &lt;lido:term><em>hat Vorlage</em>&lt;/lido:term>
+  &lt;/lido:relatedWorkRelType>
+&lt;/lido:relatedWorkSet>
+      </code>
+    </samp>
+    <h3>Digitale Reproduktion des Objektes</h3>
+    <dfn>
+      Resources that are surrogates for an object / work, including digital images, videos or audio files that represent
+      it in an online service.
+    </dfn>
+    <code>lido:resourceWrap/lido:resourceSet</code>
+    <p>
+      Für jedes Objekt werden Links zu digitalen Reproduktionen angegeben. Die Art der digitalen Reproduktion wird durch
+      Belegung des <code>lido:type</code>-Attributs, der Medientyp des Linkziels durch das
+      <code>lido:formatResource</code>-Attribut angegeben.  Die Die Nutzungslizenz wird als natürlichsprachige
+      Bezeichnung und der Rechteinhaber als kodierter Wert in Form der ISIL angegeben.
+    </p>
+    <dl>
+      <dt><code>purl</code></dt>
+      <dd>Persistente URL des Digitalisats</dd>
+      <dt><code>display</code></dt>
+      <dd>JPEG-Grafik in höchster Auflösung</dd>
+      <dt><code>thumbnail</code></dt>
+      <dd>Vorschaubild</dd>
+    </dl>
+    <samp>
+      <code>
+&lt;lido:resourceSet>
+  &lt;lido:resourceRepresentation <em>lido:type="purl"</em>>
+    &lt;lido:linkResource <em>lido:formatResource="text/html"</em>>
+      <em>http://diglib.hab.de?grafik=graph-a1-1</em>
+    &lt;/lido:linkResource>
+  &lt;/lido:resourceRepresentation>
+  &lt;lido:resourceRepresentation <em>lido:type="display"</em>>
+    &lt;lido:linkResource <em>lido:formatResource="image/jpeg"</em>>
+      <em>http://diglib.hab.de/varia/grafik/graph-a1-1/max/000001.jpg</em>
+    &lt;/lido:linkResource>
+  &lt;/lido:resourceRepresentation>
+  &lt;lido:resourceRepresentation <em>lido:type="thumbnail"</em>>
+    &lt;lido:linkResource <em>lido:formatResource="image/jpeg"</em>>
+      <em>http://diglib.hab.de/varia/grafik/graph-a1-1/thumbs/000001.jpg</em>
+    &lt;/lido:linkResource>
+  &lt;/lido:resourceRepresentation>
+  &lt;lido:rightsResource>
+    &lt;lido:rightsType>
+      &lt;lido:term><em>CC-BY-SA</em>&lt;/lido:term>
+    &lt;/lido:rightsType>
+    &lt;lido:rightsHolder>
+      &lt;lido:legalBodyID <em>lido:type="code"</em> <em>lido:source="isil"</em>><em>DE-23</em>&lt;/lido:legalBodyID>
+    &lt;/lido:rightsHolder>
+  &lt;/lido:rightsResource>
+&lt;/lido:resourceSet>
+      </code>
+    </samp>
+    <h2>Anhang</h2>
+    <h3>Normdatensysteme</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Getty Art &amp; Architecture Thesaurus</td><td>aat</td></tr>
+        <tr><td>Gemeinsame Normdatei</td><td>gnd</td></tr>
+        <tr><td>Getty Thesaurus of Geographic Names</td><td>tgn</td></tr>
+        <tr><td>Union List of Artist Names</td><td>ulan</td></tr>
+        <tr><td>International Standard Identifier for Libraries and Related Organizations</td><td>isil</td></tr>
+        <tr><td>Iconclass-Klassifikation</td><td>iconclass</td></tr>
+      </tbody>
+    </table>
+    <h3 id="roles">Rollen von Personen und Orten</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Entität</th>
+          <th>Bezeichnung</th>
+          <th>Kategorie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Person</td><td>Maler</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Verleger</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Zeichner</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Inventor</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Dedikator</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Widmungsempfänger</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Verfasser des Textes (Inschrift)</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Stecher</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Dargestellte Person</td><td>Dargestellte Person</td></tr>
+        <tr><td>Person</td><td>Dichter</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Drucker</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Frühere Zuschreibung</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Typograph</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Formschneider</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Auftraggeber</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Inventor des ursprünglichen Entwurfs</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Verfasser des Bildprogramms</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Besitzer der Vorlage</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Stecher der Vorlage</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Eigner des Wappens</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Nicht definiert</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Früherer Besitzer</td><td>Früherer Besitzer</td></tr>
+        <tr><td>Person</td><td>Stifter</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Kolorist</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Kalligraph</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Verfasser eines handschriftlichen Vermerks</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Händler</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Maler der Vorlage</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Verfasser der Textvorlage</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Zeichner der Vorlage</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Sekretär</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Verfasser des Textes (Kontext)</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Herausgeber</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Architekt</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Bildhauer</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Produktionsleiter</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Auf Kosten von</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Komponist</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Erwähnte Person</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Zuschreibung</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Zeichner / Inventor</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Schreiber</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Alternative Zuschreibung</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Traditionelle Zuschreibung</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Autor</td><td>Assoziierte Person</td></tr>
+        <tr><td>Person</td><td>Lithograph</td><td>Künstler/Hersteller</td></tr>
+        <tr><td>Person</td><td>Verfasser des Kontext</td><td>Assoziierte Person</td></tr>
+      </tbody>
+      <tbody>
+        <tr><td>Ort</td><td>Dargestellter Ort</td><td>Dargestellter Ort</td></tr>
+        <tr><td>Ort</td><td>Verlagsort</td><td></td></tr>
+        <tr><td>Ort</td><td>Entstehungsort der Platte</td><td>Ort der Herstellung</td></tr>
+        <tr><td>Ort</td><td>Genannter Ort</td><td></td></tr>
+        <tr><td>Ort</td><td>Impliziter Ortsbezug</td><td></td></tr>
+        <tr><td>Ort</td><td>Dargestelltes Bauwerk</td><td>Dargestelltes Bauwerk</td></tr>
+        <tr><td>Ort</td><td>Entstehungsort der Zeichnung</td><td>Ort der Herstellung</td></tr>
+        <tr><td>Ort</td><td>Herstellungsort</td><td>Ort der Herstellung</td></tr>
+      </tbody>
+    </table>
+    <h3>Qualifizierung von Personenrollen</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Bezeichnung</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Zuschreibung</td></tr>
+        <tr><td>Mögliche Zuschreibung</td></tr>
+        <tr><td>Ehemalige Zuschreibung</td></tr>
+        <tr><td>Alternative Zuschreibung</td></tr>
+        <tr><td>Abgelehnte Zuschreibung</td></tr>
+        <tr><td>Traditionelle Zuschreibung</td></tr>
+        <tr><td>Wahrscheinliche Zuschreibung</td></tr>
+      </tbody>
+    </table>
+    <h3>Beim Export nicht berücksichtige Eigenschaften</h3>
+    <ul>
+      <li>Assoziierte Person</li>
+      <li>Eigentum</li>
+      <li>Früherer Besitzer</li>
+      <li>Kontext</li>
+      <li>Manuskriptnotiz</li>
+      <li>Provenienz</li>
+      <li>Sammelband</li>
+      <li>Sammlermarke</li>
+      <li>Technik (Freitext)</li>
+      <li>Trägermaterial (Freitext)</li>
+      <li>Verweis</li>
+      <li>Wasserzeichen</li>
+    </ul>
+  </body>
+</html>
